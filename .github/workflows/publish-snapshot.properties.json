@@ -1,0 +1,11 @@
+{
+    "name": "Publish Snapshot Workflow",
+    "description": "Publish Snapshot Workflow",
+    "iconName": "",
+    "categories": [
+        "TypeScript, Javascript"
+    ],
+    "filePatterns": [
+        "package.json$"
+    ]
+}

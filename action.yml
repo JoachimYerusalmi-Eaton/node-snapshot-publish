@@ -5,48 +5,9 @@ inputs:
   fileVersion:
     required: false
     description: 'file version'
-  # scope:
-  #    required: true
-  #    description: 'scope publish package'
-  # token:
-  #    required: true
-  #    description: 'token to publish read packages'
-outputs: 
-  snapshot:
-    description: snapshot package version
+    default: 'package.json'
 runs:
-  using: 'node16'
-  main: 'dist/main.js'
-  # using: composite
-  # steps:
-  #   - uses: actions/checkout@v3
-  #   - uses: actions/setup-node@v3
-  #     with:
-  #       node-version-file: '.nvmrc'
-  #       registry-url: 'https://npm.pkg.github.com'
-  #       scope: ${{inputs.scope}}
-  #       cache: 'npm'
-  #             # Skip post-install scripts here, as a malicious script could steal NODE_AUTH_TOKEN.
-  #   - run: echo ::add-mask::{{inputs.token}}
-  #     shell: bash
-  #   - run: npm ci --ignore-scripts
-  #     shell: bash
-  #     env:
-  #         NODE_AUTH_TOKEN: ${{inputs.token}}
-  #   - run: npm rebuild && npm run prepare --if-present
-  #     shell: bash
-  #   - name: Set snapshot
-  #     id: snapshot
-  #     shell: bash
-  #     run: echo "version=$(npm pkg get version | tr  -d '"')-SNAPSHOT-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-  #   - run: echo ${{steps.snapshot.version}}
-  #     shell: bash
-  #   - run: npm pkg set version=${{steps.snapshot.version}}
-  #     shell: bash
-  #   - run: npm run build
-  #     shell: bash
-  #   - run: npm publish ./dist
-  #     shell: bash
-  #     env:
-  #         NODE_AUTH_TOKEN: ${{inputs.token}}
+  using: node16
+  main: dist/main.js
+    
 

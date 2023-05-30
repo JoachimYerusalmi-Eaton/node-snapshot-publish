@@ -4,13 +4,17 @@
   "private": true,
   "description": "TypeScript template action",
   "main": "dist/main.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "format": "prettier --write '**/*.ts'",
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
     "test": "jest",
     "ncc-build": "ncc build --source-map",
-    "build": "npm run format && npm run lint && tsc -p tsconfig.build.json"
+    "build": "npm run format && npm run lint && tsc -p tsconfig.build.json",
+    "run": "node dist/main.js"
   },
   "repository": {
     "type": "git",
