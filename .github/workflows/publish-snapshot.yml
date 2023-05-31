@@ -1,0 +1,56 @@
+name: 'publish-snapshot'
+on:
+  workflow_call:
+    inputs:
+      fileVersion:
+        required: false
+        description: 'file version'
+        default: 'package.json'
+        type: string
+    secrets:
+      token:
+        required: true
+
+jobs:
+  snapshot: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{steps.action.outputs.snapshot}}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: 'JoachimYerusalmi-Eaton/node-snapshot-publish'
+          ref: 'investigate-action-creation'
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - uses: ./
+        id: action
+        with:
+          fileVersion: ${{inputs.fileVersion}}
+  publish-snapshot:
+    runs-on: ubuntu-latest
+    needs: [snapshot]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          registry-url: 'https://npm.pkg.github.com'
+          cache: 'npm'
+        # Skip post-install scripts here, as a malicious script could steal NODE_AUTH_TOKEN.
+      - run: npm ci --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.token}}
+      - run: npm rebuild && npm run prepare --if-present
+      - run: npm pkg set version=$Version
+        env:
+          Version: ${{needs.snapshot.outputs.version}}
+      - run: npm run build
+      # - run: npm publish ./dist
+      #   shell: bash
+      #   env:
+      #       NODE_AUTH_TOKEN: ${{secrets.token}}
