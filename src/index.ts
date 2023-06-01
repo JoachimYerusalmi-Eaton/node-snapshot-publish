@@ -7,7 +7,7 @@ async function run(): Promise<void> {
     const fileVersion = core.getInput('fileVersion');
     const snapshot = await Versioning.run({
       fileVersion: path.join(
-        process.env.GITHUB_WORKSPACE!,
+        process.env.GITHUB_WORKSPACE ?? '',
         fileVersion ?? 'package.json',
       ),
     });
