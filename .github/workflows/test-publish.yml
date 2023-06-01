@@ -5,4 +5,5 @@ jobs:
     uses: ./.github/workflows/publish-snapshot.yml
     with:
       fileVersion: 'package.json'
+    secrets:
       token: ${{ github.token }}
