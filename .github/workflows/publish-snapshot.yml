@@ -21,7 +21,7 @@ jobs:
         with:
           repository: 'JoachimYerusalmi-Eaton/node-snapshot-publish'
           # TODO: change branch ref
-          ref: 'chore/build-restore-ncc'
+          ref: 'develop'
       # uncomment to not push build for each iteration testing
       # - uses: actions/setup-node@v3
       #   with:
