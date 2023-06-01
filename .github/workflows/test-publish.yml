@@ -1,9 +1,8 @@
-name: 'test publish'
+name: 'test partial workflow publish template'
 on: push
 jobs:
   test-publish-with-template:
     uses: ./.github/workflows/publish-snapshot.yml
     with:
       fileVersion: 'package.json'
-    secrets:
       token: ${{ github.token }}

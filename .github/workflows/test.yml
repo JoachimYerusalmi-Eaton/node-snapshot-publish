@@ -1,4 +1,4 @@
-name: 'build-test'
+name: 'test-snapshot-version-generation'
 on:
   push
   # pull_request:

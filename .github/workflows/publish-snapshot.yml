@@ -12,7 +12,7 @@ on:
         required: true
 
 jobs:
-  snapshot: # make sure the action works on a clean machine without building
+  snapshot:
     runs-on: ubuntu-latest
     outputs:
       version: ${{steps.action.outputs.snapshot}}
@@ -20,7 +20,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: 'JoachimYerusalmi-Eaton/node-snapshot-publish'
-          ref: 'investigate-action-creation'
+          # TODO: change branch ref
+          ref: 'chore/build-restore-nc'
       # uncomment to not push build for each iteration testing
       # - uses: actions/setup-node@v3
       #   with:
