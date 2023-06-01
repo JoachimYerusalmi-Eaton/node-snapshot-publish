@@ -21,12 +21,13 @@ jobs:
         with:
           repository: 'JoachimYerusalmi-Eaton/node-snapshot-publish'
           ref: 'investigate-action-creation'
-      - uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build
+      # uncomment to not push build for each iteration testing
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version-file: '.nvmrc'
+      #     cache: 'npm'
+      # - run: npm ci
+      # - run: npm run package
       - uses: ./
         id: action
         with:

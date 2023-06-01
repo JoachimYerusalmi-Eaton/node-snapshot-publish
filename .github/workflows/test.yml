@@ -1,10 +1,11 @@
 name: 'build-test'
 on:
-  pull_request:
-  push:
-    branches:
-      - main
-      - 'releases/*'
+  push
+  # pull_request:
+  # push:
+  #   branches:
+  #     - main
+  #     - 'releases/*'
 
 jobs:
   test: # make sure the action works on a clean machine without building
@@ -13,8 +14,9 @@ jobs:
       snapshot: ${{steps.action.outputs.snapshot}}
     steps:
       - uses: actions/checkout@v3
-      - run: npm install
-      - run: npm run build
+      # # uncomment to not push dist folder for each iteration testing
+      # - run: npm install
+      # - run: npm run package
       - uses: ./
         id: action
         with:
