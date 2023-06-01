@@ -28,7 +28,7 @@ jobs:
       #     node-version-file: '.nvmrc'
       #     cache: 'npm'
       # - run: npm ci
-      # - run: npm run package
+      # - run: npm run build
       - uses: ./
         id: action
         with:

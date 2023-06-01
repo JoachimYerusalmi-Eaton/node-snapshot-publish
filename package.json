@@ -14,7 +14,7 @@
     "ts": "tsc --watch",
     "test": "jest",
     "ncc-build": "ncc build src/index.ts -o dist --source-map --minify --license licenses.txt",
-    "package": "npm run format && npm run lint && npm run ncc-build",
+    "build": "npm run format && npm run lint && npm run ncc-build",
     "run": "node dist/main.js"
   },
   "repository": {
